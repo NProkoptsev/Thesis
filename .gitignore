@@ -1,0 +1,6 @@
+*.py[cod]
+venv
+__pycache__
+.idea/
+checkpoints/
+tf_logs/
