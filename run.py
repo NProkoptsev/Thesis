@@ -162,6 +162,9 @@ def model(mode, model_name, model_type, batch_size, n_steps, eval_secs, n_layers
             y_pred[2].append(std_scaler.inverse_transform(x[5]))
             y_pred[3].append(std_scaler.inverse_transform(x[11]))
 
+        #[dd:-dd] - offsets containing ground truth values in dataset, e.g. 15 minute horizont has offsets [42:-9],
+        #we use first 40 steps as input, 42 step is a prediction. In seq2seq we pick 40 inputs and predict 12 outputs,
+        #thats why we can't predict values past :-9
         y_true[0] = [std_scaler.inverse_transform(
             x.flatten()) for x in X_test[40:-11]]
         y_true[1] = [std_scaler.inverse_transform(
